@@ -134,6 +134,10 @@ def generate_launch_description():
             # out as /model/my_bot/odometry_gt depending on gz-sim version.
             '/model/my_bot/odometry_gt@nav_msgs/msg/Odometry[gz.msgs.Odometry',
         ],
+        # No laser_filters in this setup: SLAM, AMCL, both Nav2 costmaps and the collision
+        # monitor read scan_filtered, so the raw Gazebo scan is published under that name.
+        # (Nothing removes the robot's own body returns here; see CHANGES 4.27.)
+        remappings=[('scan', 'scan_filtered')],
         namespace=namespace,
         output='screen'
     )

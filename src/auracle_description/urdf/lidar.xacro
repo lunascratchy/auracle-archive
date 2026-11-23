@@ -53,7 +53,7 @@
                     </horizontal>
                 </scan>
                 <range>
-                    <min>0.3</min>
+                    <min>0.15</min>   <!-- was 0.3: blinded the sim to the collision-monitor zone (x 0.22..0.32 m from the axle); matches the real RPLidar. CHANGES 4.27 -->
                     <max>12</max>
                     <resolution>0.01</resolution>
                 </range>

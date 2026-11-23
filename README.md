@@ -220,3 +220,21 @@ ros2 run nav2_map_server map_saver_cli -f ~/map_2 --ros-args -r map:=/auracle/ma
 # navigation againts saved 
 ros2 launch auracle_bringup localization_nav_rviz.launch.py namespace:=auracle \
   map:=~/map_2.yaml
+
+
+
+# SIMULATION
+cd ~/Documents/auracle_ws
+colcon build --symlink-install --packages-select auracle_bringup auracle_description
+
+source install/setup.bash && ros2 launch auracle_bringup launch_sim.launch.py use_joy_node:=false
+
+ros2 control list_controllers
+
+source install/setup.bash && ros2 launch auracle_bringup slam_mapping.launch.py use_sim_time:=true
+
+source install/setup.bash && ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=cmd_vel_joy
+
+source install/setup.bash && ros2 run nav2_map_server map_saver_cli -f $(pwd)/src/auracle_bringup/config/map_sim --ros-args -p use_sim_time:=true
+
+source install/setup.bash && ros2 launch auracle_bringup localization_nav_rviz.launch.py use_sim_time:=true map:=$(pwd)/src/auracle_bringup/config/map_sim.yaml
