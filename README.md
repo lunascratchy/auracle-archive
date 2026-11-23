@@ -16,7 +16,8 @@ source install/setup.bash && ros2 launch auracle_bringup launch_sim.launch.py us
 ```
 `use_joy_node:=false` means no controller is read on this machine (keyboard, or the Windows bridge below). Drop it if the controller is attached to this machine.
 
-Wait for it to settle — Gazebo window opens, spawner sequence finishes diff_cont → joint_broad → imu_broadcaster, one after another now
+Wait for it to settle — Gazebo window opens, spawner sequence finishes diff_cont → joint
+_broad → imu_broadcaster, one after another now
 
 To confirm in a separate terminal
 ```
