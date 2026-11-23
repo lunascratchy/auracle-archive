@@ -15,9 +15,11 @@
             <Sequence name="Trip">
               <LoadWaypoints file="{route_file}" path_name="{load_key}" goals="{goals}"/>
               <FollowWaypoints goals="{goals}"/>
+              <FaceHeading file="{route_file}" path_name="{load_key}"/>   <!-- turn to the recorded load yaw -->
               <Sleep msec="3000"/>   <!-- stands in for loading -->
               <LoadWaypoints file="{route_file}" path_name="{offload_key}" goals="{goals}"/>
               <FollowWaypoints goals="{goals}"/>
+              <FaceHeading file="{route_file}" path_name="{offload_key}"/>   <!-- turn to the recorded offload yaw -->
             </Sequence>
           </ForceSuccess>
         </Sequence>
